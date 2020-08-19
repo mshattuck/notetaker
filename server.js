@@ -11,11 +11,12 @@ note.use(express.json());
 //serve the images, css, and JS files
 note.use(express.static('public'));
 
-//URL parser for nested object
+//URL parser for nested objects
 note.use(express.urlencoded({extended: true}));
 
 //set up port for listening
-note.listen(port, () => {
-    console.log('app listening on port: ' + port);
+note.listen(port, () => 
+{
+    console.log('note app listening on port: ' + port);
 });
 
