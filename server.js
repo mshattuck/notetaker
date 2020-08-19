@@ -2,6 +2,8 @@
 const express = require('express');
 const app = express();
 
+
+
 //port to use with code for Heroku
 const port = process.env.port || 8080;
 
@@ -21,6 +23,6 @@ require('./routes/api-routes')(app);
 //set up port for listening
 app.listen(port, () => 
 {
-    console.log('app app listening on port: ' + port);
+    console.log('notetaker app listening on port: ' + port);
 });
 

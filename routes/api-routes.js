@@ -7,41 +7,42 @@ module.exports = (app) =>
     //retreive all notes
     app.get('/api/notes', (req,res) =>
     {
-                console.log("getting all notes");
-                
+        console.log("Loading all notes");
         res.json(allNotes);
     });
 
+    //create a new note
     app.post('/api/notes', (req, res) =>
     {
         //create new note object with properties from the html body
         const note = req.body;
 
-                console.log("note: ",note);
+                console.log("new note object: ",note);
 
+        //variable to get the last note id
+        let lastid = 0;
 
-        //to get the top note id
-        let topMost = 0;
-
-        //checks the highest id number, iterates over properties of 
+        //iterates through the id property in allNotes, sets it to the highest until equal
         for (let i in allNotes)
         {
                     console.log("note[i].id:",allNotes[i].id);
 
             let id = allNotes[i].id;
                     
-
-            if (id > topMost)
+            //sets the value to the id of the note in the array until it is equal to the highest note.id value
+            if (id > lastid)
             {
-                topMost = id;
+                lastid = id;
             }
         };
+            console.log("lastid: ",lastid);
+            console.log("note.id: ",note.id);
 
-        //sets the note's id number to the next highest
-        note.id = topMost + 1;
-        //adds the note to the notes
+        //increments and sets the new notes' id and adds it to the allNotes
+        note.id = lastid + 1;
         allNotes.push(note);
 
+        //adds it to the allNotes array in the db.json file
         fs.writeFile("db/db.json", JSON.stringify(allNotes), function(err) 
         { 
             if(err){return console.log(err);} 
