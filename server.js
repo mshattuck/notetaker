@@ -1,22 +1,26 @@
 //dependancies
 const express = require('express');
-const note = express();
+const app = express();
 
 //port to use with code for Heroku
 const port = process.env.port || 8080;
 
 //parse incoming requests
-note.use(express.json());
+app.use(express.json());
 
 //serve the images, css, and JS files
-note.use(express.static('public'));
+app.use(express.static('public'));
 
 //URL parser for nested objects
-note.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
+
+//routes
+require('./routes/html-routes')(app);
+require('./routes/api-routes')(app);
 
 //set up port for listening
-note.listen(port, () => 
+app.listen(port, () => 
 {
-    console.log('note app listening on port: ' + port);
+    console.log('app app listening on port: ' + port);
 });
 
