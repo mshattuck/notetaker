@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 //port to use with code for Heroku
-var PORT = process.env.PORT || 5000
+var PORT = process.env.PORT || 5050
 
 //parse incoming requests
 app.use(express.json());
