@@ -60,6 +60,8 @@ const handleNoteSave = function () {
     getAndRenderNotes();
     renderActiveNote();
   });
+  //refresh the page after creating a new note
+  getAndRenderNotes();
 };
 
 // Delete the clicked note
